@@ -35,6 +35,7 @@ public class SphereController : MonoBehaviour
             collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
             spawnManagerScript.spawnKnife = true;
             playerControllerScript.score++;
+            PlayerPrefs.SetInt("Score", playerControllerScript.score);
             Debug.Log("Score: " + playerControllerScript.score);
         }
     }

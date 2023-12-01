@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        score = PlayerPrefs.GetInt("Score", 0); 
         spawnManagerScript = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
     }
 
