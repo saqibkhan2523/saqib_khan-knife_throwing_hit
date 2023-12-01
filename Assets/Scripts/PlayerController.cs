@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
         {
             if (spawnManagerScript.currentKnife != null)
             {
-                spawnManagerScript.currentKnife.GetComponent<MoveForward>().moveForward = true;
+                spawnManagerScript.currentKnife.GetComponent<MoveKnifeForward>().moveForward = true;
             }
         }
     }

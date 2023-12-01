@@ -9,6 +9,12 @@ public class SphereController : MonoBehaviour
     private SpawnManager spawnManagerScript;
     private PlayerController playerControllerScript;
 
+    //Bonus Feature. Not Complete
+    //float startDisappearTime = 1f;
+    //float disappearTime = 2f;
+    //int disappearChance = 0;
+    //float timer = 0;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +30,21 @@ public class SphereController : MonoBehaviour
         {
             transform.Rotate(Vector3.forward * Time.deltaTime * sphereRotateSpeed);
         }
+
+        //Bonus Feature. Not Complete
+        //timer += Time.deltaTime;
+
+        //if(timer > startDisappearTime)
+        //{
+        //    disappearChance = Random.Range(0, 1);
+        //    if(disappearChance > 50)
+        //    {
+        //        gameObject.SetActive(false);
+        //        Invoke("ReappearBoard", disappearTime);
+        //        timer = 0;
+        //    }
+        //}
+        
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,4 +60,10 @@ public class SphereController : MonoBehaviour
             Debug.Log("Score: " + playerControllerScript.score);
         }
     }
+
+    //Bonus Feature. Not Complete
+    //private void ReappearBoard()
+    //{
+    //    gameObject.SetActive(true);
+    //}
 }

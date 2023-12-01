@@ -2,18 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class MoveForward : MonoBehaviour
+public class MoveKnifeForward : MonoBehaviour
 {
     public float knifeMovingSpeed;
     public bool moveForward = false;
 
     private Rigidbody knifeRb;
 
+    private AudioSource knifeAudioSource;
+    public AudioClip boardHit;
+    public AudioClip knifeHit;
+
+    private PlayerController playerControllerScript;
+
     // Start is called before the first frame update
     void Start()
     {
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
         knifeRb = GetComponent<Rigidbody>();
+        knifeAudioSource = GetComponent<AudioSource>();
         moveForward = false;
     }
 
@@ -34,6 +43,25 @@ public class MoveForward : MonoBehaviour
         {
             knifeRb.isKinematic = true;
             moveForward = false;
+            knifeAudioSource.PlayOneShot(boardHit);
         }
+
+        if (collision.gameObject.CompareTag("Knife"))
+        {
+            knifeAudioSource.PlayOneShot(knifeHit);
+            moveForward = false;
+
+            playerControllerScript.gameOver = true;
+            Debug.Log("Game Over");
+            Invoke("RestartGame", 3f);
+
+            
+        }
+
+    }
+
+    private void RestartGame()
+    {
+        SceneManager.LoadScene(0);
     }
 }
